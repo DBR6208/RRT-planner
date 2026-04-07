@@ -203,6 +203,12 @@ py -m pytest -q
 docker compose up --build
 ```
 
+To stop and remove containers and local images:
+
+```powershell
+docker compose down --rmi local
+```
+
 Default URLs:
 
 - Frontend: http://localhost:5173
