@@ -1,0 +1,506 @@
+:root {
+  --bg-top: #f7fbff;
+  --bg-mid: #f0f7ff;
+  --bg-bottom: #dcecff;
+  --ink: #0f1d2e;
+  --muted: #42556f;
+  --card: #ffffffd9;
+  --line: #9bb7dc;
+  --primary: #0e6ba8;
+  --primary-strong: #094e7a;
+  --accent: #f18f01;
+  --danger: #a4133c;
+  --shadow: 0 16px 38px rgba(14, 56, 92, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, #ffffff 0%, transparent 40%),
+    radial-gradient(circle at 90% 18%, #ffffffbb 0%, transparent 25%),
+    linear-gradient(145deg, var(--bg-top) 0%, var(--bg-mid) 52%, var(--bg-bottom) 100%);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 26px;
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) 1fr;
+  gap: 18px;
+}
+
+.controls-panel,
+.plot-card {
+  background: var(--card);
+  border: 1px solid #ffffff;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.controls-panel {
+  padding: 20px;
+  animation: rise-in 0.55s ease;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.85rem;
+  letter-spacing: 0.01em;
+}
+
+h3 {
+  margin: 0 0 10px;
+}
+
+.subtitle {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  color: var(--muted);
+}
+
+.settings-group {
+  margin-top: 10px;
+  border: 1px solid #c4d7ed;
+  border-radius: 12px;
+  background: #f4f9ff;
+  overflow: hidden;
+}
+
+.settings-group > summary {
+  cursor: pointer;
+  padding: 10px 12px;
+  font-weight: 800;
+  color: #13466f;
+  background: linear-gradient(180deg, #edf6ff, #e3f0ff);
+  user-select: none;
+}
+
+.settings-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-group > summary::before {
+  content: "+";
+  display: inline-block;
+  width: 16px;
+  margin-right: 6px;
+}
+
+.settings-group[open] > summary::before {
+  content: "-";
+}
+
+.settings-body {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.settings-toggle {
+  margin-bottom: 0;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #c7d7ec;
+  transition: all 0.2s ease;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 4px;
+  top: 4px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.2s ease;
+  box-shadow: 0 3px 8px rgba(11, 33, 58, 0.3);
+}
+
+.switch input:checked + .slider {
+  background: var(--primary);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+.control-grid {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #20344e;
+  display: grid;
+  gap: 4px;
+}
+
+input[type="number"] {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--ink);
+  font-size: 0.98rem;
+  padding: 9px 10px;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14, 107, 168, 0.2);
+}
+
+.button-row {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 0;
+  border-radius: 11px;
+  padding: 10px 14px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: #ffffff;
+}
+
+.secondary-btn {
+  background: linear-gradient(135deg, #d3ebff, #b2d9fb);
+  color: #0b456f;
+}
+
+.ghost-btn {
+  background: #e6f0fb;
+  color: #0d3f68;
+}
+
+.status-card {
+  border: 1px dashed #aac4e3;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.9rem;
+  display: grid;
+  gap: 4px;
+  color: #16324d;
+  background: #ffffff;
+}
+
+.error {
+  margin-top: 10px;
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.plots-panel {
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(260px, 320px);
+  gap: 14px;
+  align-content: start;
+  align-items: start;
+}
+
+.plots-main {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.plot-card {
+  padding: 14px;
+  animation: rise-in 0.55s ease;
+}
+
+.start-goal-panel {
+  position: sticky;
+  top: 14px;
+}
+
+.start-goal-group {
+  margin-top: 0;
+}
+
+.start-goal-grid {
+  margin-top: 2px;
+}
+
+.panel-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.axis-plot-shell {
+  --plot-size: 440px;
+  --axis-left: 66px;
+  --axis-right: 16px;
+  --axis-top: 14px;
+  --axis-bottom: 58px;
+
+  position: relative;
+  width: calc(var(--plot-size) + var(--axis-left) + var(--axis-right));
+  padding: var(--axis-top) var(--axis-right) var(--axis-bottom) var(--axis-left);
+}
+
+.axis-plot-core {
+  width: var(--plot-size);
+  height: var(--plot-size);
+}
+
+.plot-core-fill {
+  width: 100%;
+  height: 100%;
+}
+
+.plot-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 1px solid #a9bed8;
+  border-radius: 10px;
+}
+
+.axis-label-strong {
+  position: absolute;
+  color: #0d2f4d;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+.axis-label-x {
+  left: var(--axis-left);
+  width: var(--plot-size);
+  bottom: 8px;
+  text-align: center;
+}
+
+.axis-label-y {
+  top: var(--axis-top);
+  left: 6px;
+  height: var(--plot-size);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+}
+
+.axis-ticks-x {
+  position: absolute;
+  left: var(--axis-left);
+  width: var(--plot-size);
+  bottom: 36px;
+  display: flex;
+  justify-content: space-between;
+  color: #173f66;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.axis-ticks-y {
+  position: absolute;
+  top: var(--axis-top);
+  left: 28px;
+  height: var(--plot-size);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #173f66;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.workspace-bg {
+  fill: #f8fcff;
+}
+
+.axis-line {
+  stroke: #aac6e6;
+  stroke-width: 1.2;
+}
+
+.axis-tick {
+  stroke: #6f99c6;
+  stroke-width: 1.2;
+}
+
+.obstacle {
+  fill: rgba(220, 28, 19, 0.45);
+  stroke: #94210f;
+  stroke-width: 1;
+}
+
+.arm {
+  fill: none;
+  stroke-width: 4;
+}
+
+.start-arm {
+  stroke: #1b9e77;
+  stroke-dasharray: 7 5;
+}
+
+.goal-arm {
+  stroke: #1d5ac7;
+  stroke-dasharray: 7 5;
+}
+
+.current-arm {
+  stroke: #111111;
+}
+
+.joint {
+  fill: #111111;
+}
+
+.stacked-plot {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #a9bed8;
+}
+
+.stacked-plot canvas,
+.stacked-plot svg {
+  position: absolute;
+  inset: 0;
+}
+
+.torus-plot-box {
+  width: 440px;
+  height: 440px;
+}
+
+.tree-edge {
+  stroke: rgba(17, 81, 153, 0.52);
+  stroke-width: 1;
+}
+
+.path-edge {
+  stroke: var(--accent);
+  stroke-width: 2.2;
+}
+
+.dot {
+  stroke: #ffffff;
+  stroke-width: 1.2;
+}
+
+.start-dot {
+  fill: #1b9e77;
+}
+
+.goal-dot {
+  fill: #1d5ac7;
+}
+
+.current-dot {
+  fill: #f05a28;
+}
+
+.torus-note {
+  margin-top: 8px;
+}
+
+.plot-hint {
+  fill: #153f66;
+  font-size: 18px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 2px;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .plots-panel,
+  .plots-main {
+    grid-template-columns: 1fr;
+  }
+
+  .start-goal-panel {
+    position: static;
+  }
+
+  .axis-plot-shell {
+    --plot-size: 360px;
+    --axis-left: 58px;
+    --axis-bottom: 54px;
+    width: calc(var(--plot-size) + var(--axis-left) + var(--axis-right));
+  }
+
+  .torus-plot-box {
+    width: min(100%, 440px);
+    height: auto;
+    aspect-ratio: 1;
+  }
+}

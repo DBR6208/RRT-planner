@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: rrt-backend
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: rrt-frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
